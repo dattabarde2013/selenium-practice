@@ -1,0 +1,60 @@
+package Dropdown_Handeling;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+
+public class DD_Handeling 
+{
+	public static void main(String[] args) throws InterruptedException 
+	{
+		
+		System.setProperty("webdriver.chrome.driver", "G:\\Selenium&  web driver\\22nov new version\\chromedriver.exe");
+		WebDriver driver=new ChromeDriver();
+		driver.get("https://demo.guru99.com/test/newtours/register.php");
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		Thread.sleep(3000);	
+		driver.manage().window().maximize();
+		
+	Select drpcountry=new Select(driver.findElement(By.xpath("//select[@name='country']")));
+		// 1) SelectBy().visibleText() method
+		drpcountry.selectByVisibleText("AMERICAN SAMOA");
+		Thread.sleep(4000);
+		
+		
+		// 2) SelectBy().index(); method
+		
+		drpcountry.selectByIndex(8);
+		Thread.sleep(4000);
+		
+		
+		// 3) SelectByValue(); or deselectByValue();
+		drpcountry.selectByValue("ANTARCTICA");
+		Thread.sleep(4000);
+		
+		
+		// 4) isMultiple()
+		if(drpcountry.isMultiple())
+		{
+			System.out.println("Countries are multiple");
+			
+		}
+		else
+		{
+			System.out.println("Not Multiple");
+		}
+		// 5) deselectAll();
+		Thread.sleep(4000);
+		
+		drpcountry.deselectAll();   //Can't deselect all because it is not having that facility.
+		Thread.sleep(4000);
+		driver.quit();
+		
+	
+	}
+	
+
+}
